@@ -4,11 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>To do list</title>
 </head>
 <body>
+
+    <div id="root">
+
+        <h1 class="text-center">To do</h1>
+
+        <div class="d-flex justify-content-center align-items-center my-3 container">
+            <input type="text" class="me-3 form-control" v-model="newTodo" @keyup.enter="addTodo" placeholder="Nuova To do">
+            <button type="button" class="btn btn-dark" @click="addTodo">Aggiungi</button>
+        </div>
+
+        <div class="container mt-5 rounded-3 bg-custom p-5">
+
+            <h2 v-if="todos.length == 0">Non ci sono voci in lista</h2>
+
+            <div class="w-50 mx-auto">
+                <ul>
+                    <li class="d-flex justify-content-between align-items-center bg-light p-2 rounded-3 my-3" v-for="(todo, index) in todos" :key="index" @click="done(todo)">
+                        <p class="mb-0" :class="(todo.done == true) ? 'done' : ''">{{  todo.text }}</p>
+                        <i class="fa-solid fa-circle-xmark text-danger" @click="removeTodo(index)"></i>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+        
+    </div>
     
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="./main.js"></script>
 </body>
 </html>
